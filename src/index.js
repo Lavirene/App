@@ -31,6 +31,12 @@ let celciusTemperature = null;
 
 
 function search(city) {
+
+  if ( fahrenheitSwitcher.classList.contains('active') ) {
+    celciusSwitcher.classList.add('active')
+    fahrenheitSwitcher.classList.remove('active')
+  }
+
   let apiKey = `82d623942976c17e87d20abb94fc530f`;
   let units = "metric";
   let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
