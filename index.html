@@ -10,15 +10,18 @@
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="src/styles.css" />
+    <link rel="stylesheet" href="src/style.css" />
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <title>Weather App</title>
   </head>
 
   <body>
-    <div class="container">
-      <h1 id="city">Kyiv, UA</h1>
-      <h3 id="date"></h3>
+
+    <div class="container wrapper">
+      <div class="row">
+          <h1 class="col-12" id="city"></h1>
+          <h3 class="col-12" id="date"></h3>
+      </div>
 
       <form id="search-form">
         <input
@@ -31,28 +34,24 @@
 
         <input type="submit" value="Search" />
       </form>
-      <button id="getLocationTemp">Get Temperature in Place</button>
-      <br />
+
+
       <div class="row">
+        <div class="col-sm-6 sun-icon">
+            <img id="weather-icon">
+        </div>
         <div class="col-sm-6">
-          <h5
-            id="weatherDescription"
-            class="card-title weather-description"
-          ></h5>
-          <p class="card-text weather-temp">
-            <span id="temperature">23</span>°C
-          </p>
-          <p>Wind speed: <span id="wind"></span> km/h</p>
-          <p>Humidity: <span id="humidity"></span>%</p>
+            <h5
+              id="weather-description"
+              class="card-title weather-description">
+            </h5>
+            <p class="card-text weather-temp">
+              <span id="temperature"></span><a class="active" href="#" id="celciusSwitcher">°C</a> | <a href="#" id="fahrenheitSwitcher">F°</a>
+            </p>
+            <p>Wind speed: <span id="wind"></span> km/h</p>
+            <p>Humidity: <span id="humidity"></span>%</p>
         </div>
       </div>
-      <div>
-        <p>
-          <a href="https://github.com/Lavirene/App">Open-source code</a>, by
-          Lavirene
-        </p>
-      </div>
-    </div>
 
     <script src="src/index.js"></script>
     <script

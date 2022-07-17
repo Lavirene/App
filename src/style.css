@@ -3,6 +3,8 @@ h1 {
 }
 .sun-icon {
   text-align: right;
+  display: flex;
+  justify-content: flex-end;
 }
 .sun {
   font-size: 150px;
@@ -22,4 +24,16 @@ h1 {
 }
 #getLocationTemp {
   margin: 1em 0;
+}
+.active,
+.active:hover {
+    text-decoration: none;
+    color: black;
+}
+.wrapper {
+  border:1px solid black;
+  border-radius:1em;
+  margin: 5em auto;
+  padding:1em;
+  text-align:center;
 }
