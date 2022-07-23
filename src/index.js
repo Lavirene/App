@@ -32,11 +32,6 @@ let celciusTemperature = null;
 
 function search(city) {
 
-  if ( fahrenheitSwitcher.classList.contains('active') ) {
-    celciusSwitcher.classList.add('active')
-    fahrenheitSwitcher.classList.remove('active')
-  }
-
   let apiKey = `82d623942976c17e87d20abb94fc530f`;
   let units = "metric";
   let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
@@ -47,9 +42,7 @@ function search(city) {
 function submitSearch(event) {
 
   event.preventDefault();
-
   let cityInput = document.querySelector("#city-input");
-
   let city = cityInput.value.toUpperCase();
   if (cityInput.value.length < 1) city = "Kyiv";
 
@@ -78,39 +71,39 @@ function displayWeather(response) {
 
 }
 
-function convertToFahrenheit(event) {
-    event.preventDefault();
-    if ( celciusTemperature != null ) {
-        celciusSwitcher.classList.remove('active')
-        fahrenheitSwitcher.classList.add('active')
-
-        let fahrenheitTemperature = Math.round(celciusTemperature * 5 / 9 - 32);
-        let temperatureElement = document.querySelector("#temperature");
-        temperatureElement.innerHTML = fahrenheitTemperature;
-    }
-}
-
-function convertToCelcius() {
-    event.preventDefault();
-
-    celciusSwitcher.classList.add('active')
-    fahrenheitSwitcher.classList.remove('active')
-
-    let temperatureElement = document.querySelector("#temperature");
-    console.log(celciusTemperature)
-    temperatureElement.innerHTML = celciusTemperature;
-
-
-}
+// function convertToFahrenheit(event) {
+//     event.preventDefault();
+//     if ( celciusTemperature != null ) {
+//         celciusSwitcher.classList.remove('active')
+//         fahrenheitSwitcher.classList.add('active')
+//
+//         let fahrenheitTemperature = Math.round(celciusTemperature * 5 / 9 - 32);
+//         let temperatureElement = document.querySelector("#temperature");
+//         temperatureElement.innerHTML = fahrenheitTemperature;
+//     }
+// }
+//
+// function convertToCelcius() {
+//     event.preventDefault();
+//
+//     celciusSwitcher.classList.add('active')
+//     fahrenheitSwitcher.classList.remove('active')
+//
+//     let temperatureElement = document.querySelector("#temperature");
+//     console.log(celciusTemperature)
+//     temperatureElement.innerHTML = celciusTemperature;
+//
+//
+// }
 
 let searchForm = document.querySelector("#search-form");
 searchForm.addEventListener("submit", submitSearch);
 
-let fahrenheitSwitcher = document.querySelector('#fahrenheitSwitcher');
-fahrenheitSwitcher.addEventListener('click', convertToFahrenheit);
+// let fahrenheitSwitcher = document.querySelector('#fahrenheitSwitcher');
+// fahrenheitSwitcher.addEventListener('click', convertToFahrenheit);
 
-let celciusSwitcher = document.querySelector('#celciusSwitcher');
-celciusSwitcher.addEventListener('click', convertToCelcius);
+// let celciusSwitcher = document.querySelector('#celciusSwitcher');
+// celciusSwitcher.addEventListener('click', convertToCelcius);
 
 search("Kyiv");
 
