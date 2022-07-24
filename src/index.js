@@ -69,8 +69,62 @@ function displayWeather(response) {
   wind.innerHTML = response.data.wind.speed;
   humidity.innerHTML = response.data.main.humidity;
 
+  getForecast(response.data.coord)
+
 }
 
+
+function dateFix(timestamp) {
+  let day = new Date(timestamp * 1000);
+
+  let dayToday = day.getDay();
+
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+  return days[dayToday];
+
+}
+
+function displayForecast(response) {
+  let forecast = response.data.daily
+  let html = '';
+  let forecastElement = document.querySelector("#forecast");
+
+  forecast.forEach(function(frDay, index) {
+    if (index < 6) {
+      html +=
+      `
+      <div class="col-2">
+        <div class="weather-forecast-date">${dateFix(frDay.dt)}</div>
+        <img
+          src="http://openweathermap.org/img/wn/${frDay.weather[0].icon}@2x.png"
+          alt=""
+          width="42"
+        />
+        <div class="weather-forecast-temperatures">
+          <span class="weather-forecast-temperature-max">${Math.round(frDay.temp.max)}°</span>
+          <span class="weather-forecast-temperature-min">${Math.round(frDay.temp.min)}°</span>
+        </div>
+      </div>
+      `;
+    }
+
+  })
+  forecastElement.innerHTML = html;
+}
+
+
+function getForecast(coordinates) {
+
+  let apiKey = `82d623942976c17e87d20abb94fc530f`;
+
+  let units = "metric";
+
+  let url = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=${units}`;
+
+  axios.get(url).then(displayForecast);
+
+}
 // function convertToFahrenheit(event) {
 //     event.preventDefault();
 //     if ( celciusTemperature != null ) {
@@ -112,11 +166,11 @@ search("Kyiv");
   // navigator.geolocation.getCurrentPosition(retrievePosition);
 // });
 
-// function retrievePosition(position) {
-//   let apiKey = `82d623942976c17e87d20abb94fc530f`;
-//   let units = "metric";
-//   let lat = position.coords.latitude;
-//   let lon = position.coords.longitude;
-//   let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=${units}`;
-//   axios.get(url).then(displayWeather);
-// }
+function retrievePosition(position) {
+  let apiKey = `82d623942976c17e87d20abb94fc530f`;
+  let units = "metric";
+  let lat = position.coords.latitude;
+  let lon = position.coords.longitude;
+  let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=${units}`;
+  axios.get(url).then(displayWeather);
+}

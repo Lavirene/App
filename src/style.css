@@ -37,3 +37,12 @@ h1 {
   padding:1em;
   text-align:center;
 }
+
+#forecast {
+  margin: 2em auto;
+}
+
+.weather-forecast-temperature-max,
+.weather-forecast-temperature-min {
+  font-size: 10px;
+}
